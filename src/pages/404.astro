@@ -1,0 +1,51 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page not found" noindex>
+  <section>
+    <div class="container">
+      <p>404</p>
+      <h1>Page not found</h1>
+      <p class="message">
+        The page may have moved, or the address may be incorrect.
+      </p>
+      <a href="/">Return home</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  section {
+    display: grid;
+    min-height: 70vh;
+    align-items: center;
+  }
+
+  .container {
+    padding-block: 5rem;
+  }
+
+  p:first-child {
+    color: var(--brand-600);
+    font-weight: 700;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(3rem, 10vw, 7rem);
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .message {
+    max-width: 35rem;
+    color: var(--text-muted);
+    font-size: 1.125rem;
+  }
+
+  a {
+    color: var(--brand-700);
+    font-weight: 700;
+  }
+</style>

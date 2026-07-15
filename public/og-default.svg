@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <circle cx="1030" cy="80" r="350" fill="#1d4ed8" opacity=".55"/>
+  <path d="M160 115 280 340H40l120-225Z" fill="#60a5fa"/>
+  <path d="m160 190 45 90h-90l45-90Z" fill="#0f172a"/>
+  <text x="60" y="465" fill="white" font-family="system-ui, sans-serif" font-size="78" font-weight="700">Astro Starter</text>
+  <text x="62" y="530" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="34">Replace the content. Keep the engineering.</text>
+</svg>

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "security:minimumReleaseAgeNpm",
+    ":maintainLockFilesWeekly"
+  ],
+  "timezone": "Europe/Zurich",
+  "schedule": ["before 6am on monday"],
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 5,
+  "major": {
+    "dependencyDashboardApproval": true
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  },
+  "packageRules": [
+    {
+      "description": "Group non-major Astro ecosystem updates",
+      "matchPackageNames": ["astro", "astro-icon", "@astrojs/**"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Astro ecosystem"
+    },
+    {
+      "description": "Group non-major Cloudflare tooling updates",
+      "matchPackageNames": ["wrangler", "@cloudflare/**"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Cloudflare tooling"
+    },
+    {
+      "description": "Group non-major styling and icon updates",
+      "matchPackageNames": [
+        "tailwindcss",
+        "@tailwindcss/**",
+        "@iconify-json/**"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Styling and icons"
+    },
+    {
+      "description": "Group non-major test and quality tooling updates",
+      "matchPackageNames": [
+        "vitest",
+        "@playwright/test",
+        "@axe-core/playwright",
+        "prettier",
+        "prettier-plugin-astro",
+        "typescript"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Test and quality tooling"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+---
+import { Icon } from "astro-icon/components";
+import LogoMark from "@/icons/logo-mark.svg";
+import { site } from "@/data/site";
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/" aria-label={`${site.name} home`}>
+      <LogoMark class="brand__mark" aria-hidden="true" />
+      <span>{site.shortName}</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li>
+          <a href="https://docs.astro.build" rel="external">
+            Astro docs
+            <Icon name="lucide:external-link" size="16" aria-hidden="true" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(12px);
+  }
+
+  .site-header__inner {
+    display: flex;
+    min-height: 4.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .brand,
+  nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    text-decoration: none;
+  }
+
+  .brand {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .brand__mark {
+    width: 1.75rem;
+    color: var(--brand-600);
+  }
+
+  nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--text-muted);
+    font-size: 0.925rem;
+  }
+
+  nav a:hover {
+    color: var(--brand-600);
+  }
+
+  @media (max-width: 42rem) {
+    nav li:first-child,
+    nav li:last-child {
+      display: none;
+    }
+  }
+</style>

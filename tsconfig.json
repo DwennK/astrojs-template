@@ -1,0 +1,24 @@
+{
+  "extends": "astro/tsconfigs/strictest",
+  "compilerOptions": {
+    "allowJs": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["@cloudflare/vitest-pool-workers/types"]
+  },
+  "include": [
+    ".astro/types.d.ts",
+    "**/*.astro",
+    "**/*.ts",
+    "worker-configuration.d.ts"
+  ],
+  "exclude": ["dist", "node_modules", "playwright-report", "test-results"]
+}

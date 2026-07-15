@@ -1,0 +1,202 @@
+---
+import { Icon } from "astro-icon/components";
+import type { WithContext, WebSite } from "schema-dts";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/data/site";
+
+const structuredData: WithContext<WebSite> = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.name,
+  description: site.description,
+  url: Astro.site!.href,
+};
+
+const foundations = [
+  ["zap", "Astro 7 static output with minimal client JavaScript"],
+  ["shield-check", "Cloudflare Worker form security and structured logs"],
+  ["search", "Canonical, social metadata, sitemap and typed JSON-LD"],
+  ["test-tube-2", "Worker, browser, link and accessibility checks"],
+] as const;
+---
+
+<BaseLayout title={site.name} structuredData={structuredData}>
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow">Reusable website foundation</p>
+      <h1>Replace the content.<br />Keep the engineering.</h1>
+      <p class="lede">
+        This neutral starter is intentionally small: brand tokens, accessible
+        structure, SEO defaults, secure forms, and a complete quality gate.
+      </p>
+      <div class="actions">
+        <a class="button button--primary" href="/contact/"
+          >Test the contact flow</a
+        >
+        <a
+          class="button button--secondary"
+          href="https://docs.astro.build"
+          rel="external"
+        >
+          Read Astro docs
+          <Icon name="lucide:arrow-up-right" size="18" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="foundations" aria-labelledby="foundations-title">
+    <div class="container">
+      <p class="eyebrow">Included by default</p>
+      <h2 id="foundations-title">A compact production baseline</h2>
+      <ul>
+        {
+          foundations.map(([icon, label]) => (
+            <li>
+              <Icon name={`lucide:${icon}`} size="22" aria-hidden="true" />
+              <span>{label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    min-height: 70vh;
+    align-items: center;
+    background:
+      radial-gradient(
+        circle at 85% 15%,
+        color-mix(in srgb, var(--brand-100) 75%, transparent),
+        transparent 30rem
+      ),
+      linear-gradient(180deg, var(--surface-muted), var(--surface));
+  }
+
+  .hero__inner {
+    padding-block: clamp(5rem, 12vw, 9rem);
+  }
+
+  .eyebrow {
+    margin: 0 0 1rem;
+    color: var(--brand-600);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+
+  h1 {
+    max-width: 14ch;
+    font-size: clamp(3rem, 8vw, 6.75rem);
+  }
+
+  h2 {
+    max-width: 17ch;
+    font-size: clamp(2rem, 5vw, 4rem);
+  }
+
+  .lede {
+    max-width: 44rem;
+    margin: 2rem 0 0;
+    color: var(--text-muted);
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .button {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 1.1rem;
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .button--primary {
+    background: var(--brand-600);
+    color: white;
+  }
+
+  .button--primary:hover {
+    background: var(--brand-700);
+  }
+
+  .button--secondary {
+    border-color: var(--border);
+    background: var(--surface);
+  }
+
+  .button--secondary:hover {
+    border-color: var(--brand-500);
+    color: var(--brand-700);
+  }
+
+  .foundations {
+    padding-block: clamp(4rem, 10vw, 8rem);
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    min-height: 7rem;
+    align-items: flex-start;
+    gap: 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    background: var(--surface);
+    box-shadow: var(--shadow-soft);
+    font-weight: 550;
+  }
+
+  li :global(svg) {
+    flex: 0 0 auto;
+    color: var(--brand-600);
+  }
+
+  @media (max-width: 42rem) {
+    .hero {
+      min-height: auto;
+    }
+
+    ul {
+      grid-template-columns: 1fr;
+    }
+
+    .actions,
+    .button {
+      width: 100%;
+    }
+  }
+</style>

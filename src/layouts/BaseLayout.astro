@@ -1,0 +1,107 @@
+---
+import { Font } from "astro:assets";
+import type { Thing, WithContext } from "schema-dts";
+
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import { site } from "@/data/site";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: URL | string;
+  image?: URL | string;
+  imageAlt?: string;
+  noindex?: boolean;
+  preloadImage?: URL | string;
+  structuredData?: WithContext<Thing> | WithContext<Thing>[];
+}
+
+const {
+  title,
+  description = site.description,
+  canonical = new URL(Astro.url.pathname, Astro.site),
+  image = new URL("/og-default.png", Astro.site),
+  imageAlt = `${site.name} preview`,
+  noindex = false,
+  preloadImage,
+  structuredData,
+} = Astro.props;
+
+const canonicalUrl =
+  canonical instanceof URL ? canonical : new URL(canonical, Astro.site);
+const imageUrl = image instanceof URL ? image : new URL(image, Astro.site);
+const preloadImageUrl = preloadImage
+  ? preloadImage instanceof URL
+    ? preloadImage
+    : new URL(preloadImage, Astro.site)
+  : undefined;
+const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
+const jsonLd = structuredData
+  ? JSON.stringify(structuredData).replaceAll("<", "\\u003c")
+  : undefined;
+---
+
+<!doctype html>
+<html lang={site.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content={site.themeColor} />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    {
+      preloadImageUrl && (
+        <link rel="preload" as="image" href={preloadImageUrl} />
+      )
+    }
+
+    <Font
+      cssVariable="--font-sans"
+      preload={[{ weight: "400", style: "normal", subset: "latin" }]}
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    {
+      site.social.twitter && (
+        <meta name="twitter:site" content={site.social.twitter} />
+      )
+    }
+
+    {
+      jsonLd && (
+        <script is:inline type="application/ld+json" set:html={jsonLd} />
+      )
+    }
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <SiteHeader />
+    <main id="main-content">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

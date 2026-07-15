@@ -1,0 +1,52 @@
+{
+  "name": "astro-cloudflare-template",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "dev:worker": "npm run build && wrangler dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "preview:worker": "npm run build && wrangler dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "astro check",
+    "typecheck": "tsc --noEmit",
+    "test:worker": "vitest run",
+    "wrangler:types": "wrangler types",
+    "wrangler:types:check": "wrangler types --check",
+    "check:links": "node scripts/check-links.mjs dist",
+    "test:smoke": "playwright test tests/e2e/smoke.spec.ts",
+    "test:a11y": "playwright test tests/e2e/accessibility.spec.ts",
+    "deploy:dry-run": "wrangler deploy --dry-run --env production",
+    "deploy:preview": "npm run build && wrangler deploy --env preview",
+    "deploy:production": "npm run build && wrangler deploy --env production",
+    "quality": "npm run format:check && npm run check && npm run typecheck && npm run test:worker && npm run wrangler:types:check && npm run build && npm run check:links && npm run test:smoke && npm run test:a11y && npm run deploy:dry-run"
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.117",
+    "@iconify-json/simple-icons": "^1.2.90",
+    "astro": "^7.0.9",
+    "astro-icon": "^1.1.5",
+    "schema-dts": "^2.0.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/sitemap": "^3.7.3",
+    "@axe-core/playwright": "^4.12.1",
+    "@cloudflare/vitest-pool-workers": "^0.18.5",
+    "@playwright/test": "^1.61.1",
+    "@tailwindcss/vite": "^4.3.2",
+    "prettier": "^3.9.5",
+    "prettier-plugin-astro": "^0.14.1",
+    "tailwindcss": "^4.3.2",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.111.0"
+  }
+}
