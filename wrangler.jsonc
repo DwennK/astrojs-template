@@ -2,7 +2,7 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "astro-cloudflare-template",
   "main": "./worker/index.ts",
-  "compatibility_date": "2026-07-15",
+  "compatibility_date": "2026-07-19",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./dist",
