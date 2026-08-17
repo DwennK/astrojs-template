@@ -39,7 +39,7 @@
     "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.7.3",
     "@axe-core/playwright": "^4.12.1",
-    "@cloudflare/vitest-pool-workers": "^0.20.3",
+    "@cloudflare/vitest-pool-workers": "^0.21.0",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/vite": "^4.3.3",
     "prettier": "^3.9.6",
