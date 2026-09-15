@@ -25,15 +25,19 @@ const foundations = [
   <section class="hero">
     <div class="container hero__inner">
       <p class="eyebrow">Reusable website foundation</p>
-      <h1>Replace the content.<br />Keep the engineering.</h1>
+      <h1>
+        Replace the content.
+        <br />
+        Keep the engineering.
+      </h1>
       <p class="lede">
         This neutral starter is intentionally small: brand tokens, accessible
         structure, SEO defaults, secure forms, and a complete quality gate.
       </p>
       <div class="actions">
-        <a class="button button--primary" href="/contact/"
-          >Test the contact flow</a
-        >
+        <a class="button button--primary" href="/contact/">
+          Test the contact flow
+        </a>
         <a
           class="button button--secondary"
           href="https://docs.astro.build"
@@ -51,14 +55,12 @@ const foundations = [
       <p class="eyebrow">Included by default</p>
       <h2 id="foundations-title">A compact production baseline</h2>
       <ul>
-        {
-          foundations.map(([icon, label]) => (
-            <li>
-              <Icon name={`lucide:${icon}`} size="22" aria-hidden="true" />
-              <span>{label}</span>
-            </li>
-          ))
-        }
+        {foundations.map(([icon, label]) => (
+          <li>
+            <Icon name={`lucide:${icon}`} size="22" aria-hidden="true" />
+            <span>{label}</span>
+          </li>
+        ))}
       </ul>
     </div>
   </section>

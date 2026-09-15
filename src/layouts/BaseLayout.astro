@@ -60,11 +60,9 @@ const jsonLd = structuredData
     <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    {
-      preloadImageUrl && (
-        <link rel="preload" as="image" href={preloadImageUrl} />
-      )
-    }
+    {preloadImageUrl && (
+      <link rel="preload" as="image" href={preloadImageUrl} />
+    )}
 
     <Font
       cssVariable="--font-sans"
@@ -83,21 +81,19 @@ const jsonLd = structuredData
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
-    {
-      site.social.twitter && (
-        <meta name="twitter:site" content={site.social.twitter} />
-      )
-    }
+    {site.social.twitter && (
+      <meta name="twitter:site" content={site.social.twitter} />
+    )}
 
-    {
-      jsonLd && (
-        <script is:inline type="application/ld+json" set:html={jsonLd} />
-      )
-    }
+    {jsonLd && (
+      <script is:inline type="application/ld+json" set:html={jsonLd}></script>
+    )}
     <title>{pageTitle}</title>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content">
+      Skip to content
+    </a>
     <SiteHeader />
     <main id="main-content">
       <slot />
