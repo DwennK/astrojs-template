@@ -39,7 +39,7 @@
     "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.7.3",
     "@axe-core/playwright": "^4.12.1",
-    "@cloudflare/vitest-pool-workers": "^0.21.3",
+    "@cloudflare/vitest-plugin": "^1.1.10",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/vite": "^4.3.3",
     "prettier": "^3.9.6",
@@ -48,8 +48,5 @@
     "typescript": "^6.0.3",
     "vitest": "^4.1.10",
     "wrangler": "^4.113.0"
-  },
-  "overrides": {
-    "sharp": "0.35.3"
   }
 }
