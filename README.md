@@ -21,13 +21,13 @@ React, Vue, Nuxt, component libraries, a CMS, D1, KV, R2, Queues and PWA support
 ## Start a new site
 
 1. Copy this repository and rename the package and Worker in `package.json` and `wrangler.jsonc`.
-2. Run `npm install` and `npm run wrangler:types`.
+2. Run `pnpm install` and `pnpm run wrangler:types`.
 3. Update `src/data/site.ts`, the tokens in `src/styles/global.css`, `SITE_URL`, the favicon/social assets and `site.webmanifest`.
 4. Replace the neutral pages and components with the project content.
 5. Update every `example.com` value and all preview/production variables in `wrangler.jsonc`.
 6. Create separate Turnstile widgets for preview and production.
 7. Configure Cloudflare Email sender/recipient addresses and set the secret with Wrangler.
-8. Run `npm run quality` before the first push.
+8. Run `pnpm run quality` before the first push.
 9. Install Renovate on the GitHub repository and enable the dependency graph and Dependabot alerts.
 
 ## Local development
@@ -35,12 +35,12 @@ React, Vue, Nuxt, component libraries, a CMS, D1, KV, R2, Queues and PWA support
 ```bash
 cp .env.example .env
 cp .dev.vars.example .dev.vars
-npm install
-npm run wrangler:types
-npm run dev
+pnpm install
+pnpm run wrangler:types
+pnpm run dev
 ```
 
-`npm run dev` serves Astro only. Use `npm run dev:worker` to build and run the full static-assets + `/api/*` Worker surface at `http://localhost:8787`.
+`pnpm run dev` serves Astro only. Use `pnpm run dev:worker` to build and run the full static-assets + `/api/*` Worker surface at `http://localhost:8787`.
 
 The checked-in Turnstile keys are Cloudflare's official test credentials and must never be used in production. `.dev.vars` is ignored by Git.
 
@@ -56,26 +56,26 @@ PUBLIC_TURNSTILE_SITE_KEY=your-public-site-key
 Runtime secrets:
 
 ```bash
-npx wrangler secret put TURNSTILE_SECRET_KEY --env preview
-npx wrangler secret put TURNSTILE_SECRET_KEY --env production
+pnpm exec wrangler secret put TURNSTILE_SECRET_KEY --env preview
+pnpm exec wrangler secret put TURNSTILE_SECRET_KEY --env production
 ```
 
 Runtime non-secret values live in `wrangler.jsonc`: allowed origins, accepted Turnstile hostnames, email addresses, environment name and the explicit rate-limiter failure policy. `TURNSTILE_TEST_MODE` is enabled only for the top-level local environment because Cloudflare's test response intentionally omits production hostname/action values.
 
 ## Commands
 
-| Command                     | Purpose                                      |
-| --------------------------- | -------------------------------------------- |
-| `npm run dev`               | Astro development server                     |
-| `npm run dev:worker`        | Build and run the Worker with static assets  |
-| `npm run wrangler:types`    | Regenerate binding/runtime types             |
-| `npm run build`             | Production Astro build                       |
-| `npm run quality`           | Full ordered quality gate                    |
-| `npm run deploy:dry-run`    | Validate the Worker bundle without deploying |
-| `npm run deploy:preview`    | Deploy the explicit preview environment      |
-| `npm run deploy:production` | Deploy the explicit production environment   |
+| Command                      | Purpose                                      |
+| ---------------------------- | -------------------------------------------- |
+| `pnpm run dev`               | Astro development server                     |
+| `pnpm run dev:worker`        | Build and run the Worker with static assets  |
+| `pnpm run wrangler:types`    | Regenerate binding/runtime types             |
+| `pnpm run build`             | Production Astro build                       |
+| `pnpm run quality`           | Full ordered quality gate                    |
+| `pnpm run deploy:dry-run`    | Validate the Worker bundle without deploying |
+| `pnpm run deploy:preview`    | Deploy the explicit preview environment      |
+| `pnpm run deploy:production` | Deploy the explicit production environment   |
 
-Install the browser once on a new machine with `npx playwright install chromium`.
+Install the browser once on a new machine with `pnpm exec playwright install chromium`.
 
 ## Dependency updates
 
@@ -102,14 +102,14 @@ Content Collections are configured but empty. Add Markdown files below `src/cont
 For MDX:
 
 ```bash
-npm install @astrojs/mdx
-npx astro add mdx
+pnpm install @astrojs/mdx
+pnpm exec astro add mdx
 ```
 
 For a blog or news feed:
 
 ```bash
-npm install @astrojs/rss
+pnpm install @astrojs/rss
 ```
 
 Then create a feed endpoint from real published collection entries. Do not add empty RSS or `llms.txt` files just to satisfy a checklist; both should describe content that truly exists.
@@ -119,9 +119,9 @@ Then create a feed endpoint from real published collection entries. Do not add e
 Connect the GitHub repository in **Cloudflare Dashboard → Compute → Workers & Pages → Import a repository**.
 
 - Production branch: `main`
-- Build command: `npm run build`
-- Production deploy command: `npx wrangler deploy --env production`
-- Non-production deploy command: `npx wrangler versions upload --env preview`
+- Build command: `pnpm run build`
+- Production deploy command: `pnpm exec wrangler deploy --env production`
+- Non-production deploy command: `pnpm exec wrangler versions upload --env preview`
 - Enable builds for non-production branches to receive preview URLs and PR comments
 - Add `SITE_URL` and `PUBLIC_TURNSTILE_SITE_KEY` as build variables per trigger
 - Add `TURNSTILE_SECRET_KEY` as a runtime secret per Worker environment

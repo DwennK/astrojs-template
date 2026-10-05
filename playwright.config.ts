@@ -12,9 +12,11 @@ export default defineConfig({
   use: {
     baseURL,
     trace: "on-first-retry",
+    channel:
+      process.platform === "darwin" && !process.env.CI ? "chrome" : undefined,
   },
   webServer: {
-    command: `npm run build && npm run preview -- --host 127.0.0.1 --port ${testPort}`,
+    command: `pnpm run build && pnpm run preview --host 127.0.0.1 --port ${testPort}`,
     env: {
       ASTRO_PREVIEW_BACKGROUND: "0",
     },

@@ -23,7 +23,7 @@ This repository is a reusable Astro 7 + Cloudflare Workers website template. Pre
 ## Cloudflare Worker and forms
 
 - Worker code belongs in `worker/`; only `/api/*` runs Worker-first by default.
-- Generate `Env` with `npm run wrangler:types`; never hand-write binding types.
+- Generate `Env` with `pnpm run wrangler:types`; never hand-write binding types.
 - Never commit production secrets. Use Wrangler secrets and `.dev.vars` locally.
 - Preserve method, content type, origin, body-size, field-size, honeypot, Turnstile hostname/action and rate-limit checks for public forms.
 - Keep API responses `Cache-Control: no-store`. Return `Retry-After` with HTTP 429.
@@ -33,7 +33,7 @@ This repository is a reusable Astro 7 + Cloudflare Workers website template. Pre
 
 ## Quality gate
 
-Run the narrowest relevant check during development and `npm run quality` before handoff. The full order is:
+Run the narrowest relevant check during development and `pnpm run quality` before handoff. The full order is:
 
 1. format check
 2. Astro check

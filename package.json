@@ -8,10 +8,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "dev:worker": "npm run build && wrangler dev",
+    "dev:worker": "pnpm run build && wrangler dev",
     "build": "astro build",
     "preview": "astro preview",
-    "preview:worker": "npm run build && wrangler dev",
+    "preview:worker": "pnpm run build && wrangler dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "astro check",
@@ -23,9 +23,9 @@
     "test:smoke": "playwright test tests/e2e/smoke.spec.ts",
     "test:a11y": "playwright test tests/e2e/accessibility.spec.ts",
     "deploy:dry-run": "wrangler deploy --dry-run --env production",
-    "deploy:preview": "npm run build && wrangler deploy --env preview",
-    "deploy:production": "npm run build && wrangler deploy --env production",
-    "quality": "npm run format:check && npm run check && npm run typecheck && npm run test:worker && npm run wrangler:types:check && npm run build && npm run check:links && npm run test:smoke && npm run test:a11y && npm run deploy:dry-run"
+    "deploy:preview": "pnpm run build && wrangler deploy --env preview",
+    "deploy:production": "pnpm run build && wrangler deploy --env production",
+    "quality": "pnpm run format:check && pnpm run check && pnpm run typecheck && pnpm run test:worker && pnpm run wrangler:types:check && pnpm run build && pnpm run check:links && pnpm run test:smoke && pnpm run test:a11y && pnpm run deploy:dry-run"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.118",
@@ -48,5 +48,6 @@
     "typescript": "^6.0.3",
     "vitest": "^4.1.10",
     "wrangler": "^4.113.0"
-  }
+  },
+  "packageManager": "pnpm@11.28.4"
 }
