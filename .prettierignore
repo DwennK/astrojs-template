@@ -6,4 +6,3 @@ node_modules
 playwright-report
 test-results
 worker-configuration.d.ts
-package-lock.json

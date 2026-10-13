@@ -32,6 +32,8 @@ React, Vue, Nuxt, component libraries, a CMS, D1, KV, R2, Queues and PWA support
 
 ## Local development
 
+Use Node.js 24 (see `.nvmrc`) and the pnpm version pinned in `package.json`. Install dependencies with pnpm and commit `pnpm-lock.yaml` when they change.
+
 ```bash
 cp .env.example .env
 cp .dev.vars.example .dev.vars
@@ -75,7 +77,7 @@ Runtime non-secret values live in `wrangler.jsonc`: allowed origins, accepted Tu
 | `pnpm run deploy:preview`    | Deploy the explicit preview environment      |
 | `pnpm run deploy:production` | Deploy the explicit production environment   |
 
-Install the browser once on a new machine with `pnpm exec playwright install chromium`.
+On macOS, the tests use the installed Google Chrome with an isolated test profile; no Playwright browser download is needed. On other platforms, install the test browser with `pnpm exec playwright install chromium`.
 
 ## Dependency updates
 
@@ -88,7 +90,7 @@ The root `renovate.json` configuration:
 - checks for regular updates early each Monday in the `Europe/Zurich` timezone;
 - groups compatible Astro, Cloudflare, styling and quality-tooling updates;
 - waits three days before proposing newly published npm releases;
-- refreshes `package-lock.json` weekly;
+- refreshes `pnpm-lock.yaml` weekly;
 - requires explicit Dependency Dashboard approval before opening major-update pull requests;
 - never automerges dependency updates by default;
 - lets vulnerability alerts bypass the regular schedule.
@@ -102,14 +104,14 @@ Content Collections are configured but empty. Add Markdown files below `src/cont
 For MDX:
 
 ```bash
-pnpm install @astrojs/mdx
+pnpm add @astrojs/mdx
 pnpm exec astro add mdx
 ```
 
 For a blog or news feed:
 
 ```bash
-pnpm install @astrojs/rss
+pnpm add @astrojs/rss
 ```
 
 Then create a feed endpoint from real published collection entries. Do not add empty RSS or `llms.txt` files just to satisfy a checklist; both should describe content that truly exists.
