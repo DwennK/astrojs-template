@@ -28,26 +28,26 @@
     "quality": "pnpm run format:check && pnpm run check && pnpm run typecheck && pnpm run test:worker && pnpm run wrangler:types:check && pnpm run build && pnpm run check:links && pnpm run test:smoke && pnpm run test:a11y && pnpm run deploy:dry-run"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.143",
-    "@iconify-json/simple-icons": "^1.2.100",
-    "astro": "^7.3.8",
+    "@iconify-json/lucide": "^1.2.147",
+    "@iconify-json/simple-icons": "^1.2.101",
+    "astro": "^7.4.2",
     "astro-icon": "^1.2.0",
     "schema-dts": "^2.1.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
+    "@astrojs/check": "^0.9.12",
     "@astrojs/sitemap": "^3.7.4",
-    "@axe-core/playwright": "^4.13.0",
-    "@cloudflare/vitest-plugin": "^1.4.1",
-    "@playwright/test": "^1.64.0",
+    "@axe-core/playwright": "^4.14.0",
+    "@cloudflare/vitest-plugin": "^1.4.8",
+    "@playwright/test": "^1.64.1",
     "@tailwindcss/vite": "^4.3.3",
     "prettier": "^3.9.10",
-    "prettier-plugin-astro": "^1.1.1",
+    "prettier-plugin-astro": "^1.1.2",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.4",
-    "wrangler": "^4.150.0"
+    "vitest": "^5.0.5",
+    "wrangler": "^4.153.0"
   },
   "packageManager": "pnpm@12.11.2"
 }
